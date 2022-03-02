@@ -21,8 +21,12 @@ extern "C"
 #define EC_MAXELIST       64
 /** max. length of readable name in slavelist and Object Description List */
 #define EC_MAXNAME        40
+
+#ifndef EC_MAXSLAVE
 /** max. number of slaves in array */
 #define EC_MAXSLAVE       200
+#endif
+
 /** max. number of groups */
 #define EC_MAXGROUP       2
 /** max. number of IO segments per group */
