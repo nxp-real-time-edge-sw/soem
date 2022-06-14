@@ -553,7 +553,7 @@ int ecx_waitinframe(ecx_portt *port, uint8 idx, int timeout)
  */
 int ecx_srconfirm(ecx_portt *port, uint8 idx, int timeout)
 {
-   int wkc = EC_NOFRAME;
+   int wkc;
    osal_timert timer;
 
    osal_timer_start(&timer, timeout);
