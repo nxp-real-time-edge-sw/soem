@@ -138,7 +138,6 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
       port->stack.rxbufstat   = &(port->rxbufstat);
       port->stack.rxsa        = &(port->rxsa);
       ecx_clear_rxbufstat(&(port->rxbufstat[0]));
-      psock = &(port->sockhandle);
    }
 
    /* setup ethernet headers in tx buffers so we don't have to repeat it */
@@ -357,62 +356,63 @@ static int ecx_inframe(ecx_portt *port, uint8 idx, int stacknumber)
    rval = EC_NOFRAME;
    rxbuf = &(*stack->rxbuf)[idx];
    /* check if requested index is already in buffer ? */
-   if ((idx < EC_MAXBUF) && ((*stack->rxbufstat)[idx] == EC_BUF_RCVD))
-   {
-      l = (*rxbuf)[0] + ((uint16)((*rxbuf)[1] & 0x0f) << 8);
-      /* return WKC */
-      rval = ((*rxbuf)[l] + ((uint16)(*rxbuf)[l + 1] << 8));
-      /* mark as completed */
-      (*stack->rxbufstat)[idx] = EC_BUF_COMPLETE;
-   }
-   else
-   {
-      osal_mutex_lock (port->rx_mutex);
-      /* non blocking call to retrieve frame from socket */
-      if (ecx_recvpkt(port, stacknumber))
+   if (idx < EC_MAXBUF) {
+      if ((*stack->rxbufstat)[idx] == EC_BUF_RCVD)
       {
-         rval = EC_OTHERFRAME;
-         ehp =(ec_etherheadert*)(stack->tempbuf);
-         /* check if it is an EtherCAT frame */
-         if (ehp->etype == oshw_htons(ETH_P_ECAT))
-         {
-            ecp =(ec_comt*)(&(*stack->tempbuf)[ETH_HEADERSIZE]);
-            l = etohs(ecp->elength) & 0x0fff;
-            idxf = ecp->index;
-            /* found index equals reqested index ? */
-            if (idxf == idx)
-            {
-               /* yes, put it in the buffer array (strip ethernet header) */
-               memcpy(rxbuf, &(*stack->tempbuf)[ETH_HEADERSIZE], (*stack->txbuflength)[idx] - ETH_HEADERSIZE);
-               /* return WKC */
-               rval = ((*rxbuf)[l] + ((uint16)((*rxbuf)[l + 1]) << 8));
-               /* mark as completed */
-               (*stack->rxbufstat)[idx] = EC_BUF_COMPLETE;
-               /* store MAC source word 1 for redundant routing info */
-               (*stack->rxsa)[idx] = oshw_ntohs(ehp->sa1);
-            }
-            else
-            {
-               /* check if index exist? */
-               if (idxf < EC_MAXBUF)
-               {
-                  rxbuf = &(*stack->rxbuf)[idxf];
-                  /* put it in the buffer array (strip ethernet header) */
-                  memcpy(rxbuf, &(*stack->tempbuf)[ETH_HEADERSIZE], (*stack->txbuflength)[idxf] - ETH_HEADERSIZE);
-                  /* mark as received */
-                  (*stack->rxbufstat)[idxf] = EC_BUF_RCVD;
-                  (*stack->rxsa)[idxf] = oshw_ntohs(ehp->sa1);
-               }
-               else
-               {
-                  /* strange things happend */
-               }
-            }
-         }
+         l = (*rxbuf)[0] + ((uint16)((*rxbuf)[1] & 0x0f) << 8);
+         /* return WKC */
+         rval = ((*rxbuf)[l] + ((uint16)(*rxbuf)[l + 1] << 8));
+         /* mark as completed */
+         (*stack->rxbufstat)[idx] = EC_BUF_COMPLETE;
       }
-      osal_mutex_unlock (port->rx_mutex);
-
-   }
+      else
+      {
+         osal_mutex_lock (port->rx_mutex);
+          /* non blocking call to retrieve frame from socket */
+         if (ecx_recvpkt(port, stacknumber))
+         {
+            rval = EC_OTHERFRAME;
+            ehp =(ec_etherheadert*)(stack->tempbuf);
+            /* check if it is an EtherCAT frame */
+            if (ehp->etype == oshw_htons(ETH_P_ECAT))
+            {
+               ecp =(ec_comt*)(&(*stack->tempbuf)[ETH_HEADERSIZE]);
+               l = etohs(ecp->elength) & 0x0fff;
+               idxf = ecp->index;
+               /* found index equals reqested index ? */
+               if (idxf == idx)
+               {
+                  /* yes, put it in the buffer array (strip ethernet header) */
+                  memcpy(rxbuf, &(*stack->tempbuf)[ETH_HEADERSIZE], (*stack->txbuflength)[idx] - ETH_HEADERSIZE);
+                  /* return WKC */
+                  rval = ((*rxbuf)[l] + ((uint16)((*rxbuf)[l + 1]) << 8));
+                  /* mark as completed */
+                  (*stack->rxbufstat)[idx] = EC_BUF_COMPLETE;
+                  /* store MAC source word 1 for redundant routing info */
+                  (*stack->rxsa)[idx] = oshw_ntohs(ehp->sa1);
+                  }
+                  else
+                  {
+                     /* check if index exist? */
+                     if (idxf < EC_MAXBUF)
+                     {
+                        rxbuf = &(*stack->rxbuf)[idxf];
+                        /* put it in the buffer array (strip ethernet header) */
+                        memcpy(rxbuf, &(*stack->tempbuf)[ETH_HEADERSIZE], (*stack->txbuflength)[idxf] - ETH_HEADERSIZE);
+                        /* mark as received */
+                        (*stack->rxbufstat)[idxf] = EC_BUF_RCVD;
+                        (*stack->rxsa)[idxf] = oshw_ntohs(ehp->sa1);
+                     }
+                     else
+                     {
+                        /* strange things happend */
+                     }
+                  }
+               }
+            }
+         osal_mutex_unlock (port->rx_mutex);
+      }
+   } 
 
    /* WKC if matching frame found */
    return rval;
@@ -553,7 +553,7 @@ int ecx_waitinframe(ecx_portt *port, uint8 idx, int timeout)
  */
 int ecx_srconfirm(ecx_portt *port, uint8 idx, int timeout)
 {
-   int wkc = EC_NOFRAME;
+   int wkc;
    osal_timert timer;
 
    osal_timer_start(&timer, timeout);
