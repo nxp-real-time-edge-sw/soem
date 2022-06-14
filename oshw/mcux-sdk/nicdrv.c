@@ -138,7 +138,6 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
       port->stack.rxbufstat   = &(port->rxbufstat);
       port->stack.rxsa        = &(port->rxsa);
       ecx_clear_rxbufstat(&(port->rxbufstat[0]));
-      psock = &(port->sockhandle);
    }
 
    /* setup ethernet headers in tx buffers so we don't have to repeat it */
