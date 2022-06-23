@@ -7,7 +7,6 @@
 #include "enet.h"
 #include "fsl_enet.h"
 #include "fsl_phy.h"
-#include "fsl_enet_mdio.h"
 #include "osal_defs.h"
 
 //----------------------------------------------------------------------------//
