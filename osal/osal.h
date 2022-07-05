@@ -3,25 +3,21 @@
  * LICENSE file in the project root for full license information
  */
 
+/*
+ * Copyright 2022 NXP
+*/
+
 #ifndef _osal_
 #define _osal_
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-#include "osal_defs.h"
 #include <stdint.h>
+#include "osal_defs.h"
+#include "fsl_debug_console.h"
 
 /* General types */
-#ifndef TRUE
-#define TRUE                1
-#endif
-#ifndef FALSE
-#define FALSE               0
-#endif
 typedef uint8_t             boolean;
+#define TRUE                1
+#define FALSE               0
 typedef int8_t              int8;
 typedef int16_t             int16;
 typedef int32_t             int32;
@@ -33,10 +29,13 @@ typedef uint64_t            uint64;
 typedef float               float32;
 typedef double              float64;
 
+#define MAX_TASK 1
+#define MAX_TASK_STACK 1024
+#define MAX_MUTE 20
 typedef struct
 {
     uint32 sec;     /*< Seconds elapsed since the Epoch (Jan 1, 1970) */
-    uint32 usec;    /*< Microseconds elapsed since last second boundary */
+    int32 usec;    /*< Microseconds elapsed since last second boundary */
 } ec_timet;
 
 typedef struct osal_timer
@@ -52,8 +51,10 @@ void osal_time_diff(ec_timet *start, ec_timet *end, ec_timet *diff);
 int osal_thread_create(void *thandle, int stacksize, void *func, void *param);
 int osal_thread_create_rt(void *thandle, int stacksize, void *func, void *param);
 
-#ifdef __cplusplus
-}
+#ifdef EC_DEBUG
+#define EC_PRINT PRINTF
+#else
+#define EC_PRINT(...) do {} while (0)
 #endif
 
 #endif
