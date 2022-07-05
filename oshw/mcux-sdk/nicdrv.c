@@ -90,7 +90,7 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
    }
 
    if (!port->port_pri) {
-      printf("The ifname or dev_name is not found\n");
+      EC_PRINT("The ifname or dev_name is not found\n");
       return 0;
    }
 

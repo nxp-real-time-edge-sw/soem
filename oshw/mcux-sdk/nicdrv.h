@@ -15,12 +15,13 @@
 #ifndef _nicdrvh_
 #define _nicdrvh_
 
+#include "osal.h"
+#include "ethercattype.h"
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-
-#include <pthread.h>
 
 /** pointer structure to Tx and Rx stacks */
 typedef struct

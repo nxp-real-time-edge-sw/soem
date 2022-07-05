@@ -4,10 +4,11 @@
 */
 
 #include <stdio.h>
+
+#include "osal.h"
 #include "enet.h"
 #include "fsl_enet.h"
 #include "fsl_phy.h"
-#include "osal_defs.h"
 
 //----------------------------------------------------------------------------//
 int enet_init(void *pri, uint8_t *macAddr)

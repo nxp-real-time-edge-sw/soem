@@ -3,11 +3,9 @@
  * Copyright 2022 NXP
 */
 
-#include "fsl_phy.h"
-#include "fsl_enet_mdio.h"
-#include "soem_port.h"
 #include <string.h>
-#include "osal_defs.h"
+
+#include "soem_port.h"
 
 struct soem_if_port soem_ports[SOEM_IF_PORT_MAXNUM] = {0};
 
