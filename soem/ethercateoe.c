@@ -51,7 +51,7 @@ static void EOE_ip_byte_to_uint32(uint8_t * byte_ip, eoe_ip4_addr_t * ip)
 */
 int ecx_EOEdefinehook(ecx_contextt *context, void *hook)
 {
-   context->EOEhook = hook;
+   context->EOEhook = (int (*)(ecx_contextt *, uint16, void *))hook;
    return 1;
 }
 
@@ -420,6 +420,8 @@ int ecx_EOErecv(ecx_contextt *context, uint16 slave, uint8 port, int * psize, vo
    NotLast = TRUE;
    buffersize = *psize;
    rxfragmentno = 0;
+   rxframeoffset = 0;
+   rxframeno = 0;
    
    /* Hang for a while if nothing is in */
    wkc = ecx_mbxreceive(context, slave, (ec_mbxbuft *)&MbxIn, timeout);

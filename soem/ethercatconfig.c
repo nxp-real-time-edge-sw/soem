@@ -11,6 +11,8 @@
  * the slaves can be auto configured with this module.
  */
 
+#define EC_DEBUG
+
 #include <stdio.h>
 #include <string.h>
 #include "osal.h"
@@ -866,7 +868,7 @@ static void ecx_config_find_mappings(ecx_contextt *context, uint8 group)
             ecx_mapt[thrn].thread_n = thrn;
             ecx_mapt[thrn].running = 1;
             osal_thread_create(&(ecx_threadh[thrn]), 128000,
-               &ecx_mapper_thread, &(ecx_mapt[thrn]));
+               (void *)ecx_mapper_thread, &(ecx_mapt[thrn]));
 #else
             /* serialised version */
             ecx_map_coe_soe(context, slave, 0);

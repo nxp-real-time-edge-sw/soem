@@ -80,7 +80,7 @@ int ecx_setupdatagram(ecx_portt *port, void *frame, uint8 com, uint8 idx, uint16
    datagramP->ADP = htoes(ADP);
    datagramP->ADO = htoes(ADO);
    datagramP->dlength = htoes(length);
-   ecx_writedatagramdata(&frameP[ETH_HEADERSIZE + EC_HEADERSIZE], com, length, data);
+   ecx_writedatagramdata(&frameP[ETH_HEADERSIZE + EC_HEADERSIZE], (ec_cmdtype)com, length, data);
    /* set WKC to zero */
    frameP[ETH_HEADERSIZE + EC_HEADERSIZE + length] = 0x00;
    frameP[ETH_HEADERSIZE + EC_HEADERSIZE + length + 1] = 0x00;
@@ -133,7 +133,7 @@ uint16 ecx_adddatagram(ecx_portt *port, void *frame, uint8 com, uint8 idx, boole
       /* this is the last datagram in the frame */
       datagramP->dlength = htoes(length);
    }
-   ecx_writedatagramdata(&frameP[prevlength + EC_HEADERSIZE - EC_ELENGTHSIZE], com, length, data);
+   ecx_writedatagramdata(&frameP[prevlength + EC_HEADERSIZE - EC_ELENGTHSIZE], (ec_cmdtype)com, length, data);
    /* set WKC to zero */
    frameP[prevlength + EC_HEADERSIZE - EC_ELENGTHSIZE + length] = 0x00;
    frameP[prevlength + EC_HEADERSIZE - EC_ELENGTHSIZE + length + 1] = 0x00;
