@@ -4,6 +4,7 @@
  */
 
 /* 
+ * For NXP ENET driver modification.
  * Copyright 2022 NXP
 */
 
