@@ -1,0 +1,146 @@
+---
+__variable__:
+  SOEM_VER: 1.4.0
+
+__load__:
+- middleware/soem/SOEM.yml
+
+middleware.soem.hardware_support:
+  section-type: component_support
+  __requires__:
+  - board.evkmimxrt1020
+  - board.evkmimxrt1024
+  - board.evkmimxrt1040
+  - board.evkbimxrt1050
+  - board.evkmimxrt1060
+  - board.evkbmimxrt1060
+  - board.evkcmimxrt1060
+  - board.evkmimxrt1064
+  - board.evkmimxrt1160
+  - board.evkmimxrt1170
+  - board.evkbmimxrt1170
+
+middleware.soem.ui_control:
+  section-type: component_support
+  __requires__:
+  - middleware.soem.hardware_support
+    driver.enet.support
+  component_info:
+    common:
+      fixed_id: rt_labs_soem
+      ui_name: SOEM
+      ui_description: Simple Open EtherCAT Master Library
+      ui_category: Middleware
+      ui_control: true
+      ui_release_specific: true
+      ui_control_default: false
+      version: ${SOEM_VER}
+      component_set_path:
+        repo_base_path: middleware/soem
+
+middleware.soem:
+  section-type: component
+  __requires__:
+  - middleware.soem.ui_control middleware.baremetal
+  - middleware.soem.ui_control middleware.freertos-kernel
+  default: middleware.freertos-kernel
+  component_info:
+    common:
+      description: Simple Open EtherCAT Master Library
+      version: ${SOEM_VER}
+      type: middleware
+      change_log: "./ChangeLogKSDK.txt"
+      user_visible: true
+      manifest_name: soem
+      full_name: SOEM
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: soem
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: oshw/mcux-sdk/enet
+    - repo_relative_path: osal
+    files:
+    - source: LICENSE
+      hidden: true
+      type: doc
+    - source: README.md
+      hidden: true
+      type: doc
+    - source: soem/**
+    - source: oshw/mcux-sdk/**
+    - source: osal/osal.h
+    - source: osal/baremetal/osal.c
+      condition: middleware.baremetal
+    - source: osal/baremetal/osal_defs.h
+      condition: middleware.baremetal
+    - source: osal/freertos/osal.c
+      condition: middleware.freertos-kernel
+    - source: osal/freertos/osal_defs.h
+      condition: middleware.freertos-kernel
+
+middleware.soem.unused:
+  section-type: component
+  __requires__:
+  - middleware.soem.ui_control
+  component_info:
+    common:
+      description: Simple Open EtherCAT unused files
+      version: ${SOEM_VER}
+      type: middleware
+      change_log: "./ChangeLogKSDK.txt"
+      user_visible: false
+      manifest_name: soem_unused
+      full_name: soem_unused
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    files:
+    - source: Doxyfile
+      hidden: true
+      type: doc
+    - source: drvcomment.txt
+      hidden: true
+      type: doc
+    - source: CMakeLists.txt
+      hidden: true
+    - source: doc/**
+      hidden: true
+      type: doc
+    - source: cmake/**
+      hidden: true
+    - source: oshw/erika/**
+      hidden: true
+    - source: oshw/intime/**
+      hidden: true
+    - source: oshw/linux/**
+      hidden: true
+    - source: oshw/macosx/**
+      hidden: true
+    - source: oshw/rtems/**
+      hidden: true
+    - source: oshw/rtk/**
+      hidden: true
+    - source: oshw/vxworks/**
+      hidden: true
+    - source: oshw/win32/**
+      hidden: true
+    - source: osal/erika/**
+      hidden: true
+    - source: osal/intime/**
+      hidden: true
+    - source: osal/linux/**
+      hidden: true
+    - source: osal/macosx/**
+      hidden: true
+    - source: osal/rtems/**
+      hidden: true
+    - source: osal/rtk/**
+      hidden: true
+    - source: osal/vxworks/**
+      hidden: true
+    - source: osal/win32/**
+      hidden: true
+    - source: test/**
+      hidden: true

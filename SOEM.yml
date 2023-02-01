@@ -1,0 +1,19 @@
+---
+docs.SOEM:
+  section-type: component
+  meta-name: docs.SOEM
+  component_info:
+    manifest:
+      version: 1.0.0
+      type: documentation
+      full_name: SOEM documentation
+      description: SOEM documentation
+      manifest_name: SOEM documentation
+  __requires__:
+  - middleware.soem
+  contents:
+    repo_base_path: middleware/soem/doc
+    package_base_path: middleware/soem/doc
+    project_base_path: soem
+    files:
+    - source: "*.pdf"
