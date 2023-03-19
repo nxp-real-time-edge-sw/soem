@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=../../bin/generator/sdk_generator/data/sdk_data_schema/v3/software_set_and_project_schema.json
+
+docs.SOEM:
+  section-type: component
+  meta-name: docs.SOEM
+  contents:
+    repo_base_path: middleware/soem/doc
+    package_base_path: middleware/soem/doc
+    project_base_path: soem
+    files:
+    - source: "*.pdf"
+  belong_to: set.device.${platform_devices_soc_name}
+  section_info:
+    version: 1.0.0
+    type: documentation
+    full_name: SOEM documentation
+    description: SOEM documentation
+    taxonomy:
+      cclass: docs
+      cgroup: SOEM
+    product:
+      cmsis_pack:
+        supported: false
+    display_name: SOEM documentation
+  dependency:
+    allOf:
+    - middleware.soem

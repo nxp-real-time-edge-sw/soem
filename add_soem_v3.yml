@@ -1,0 +1,171 @@
+---
+__variable__:
+  SOEM_VER: 1.4.0
+__load__:
+- middleware/soem/SOEM_v3.yml
+middleware.soem:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: soem
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: oshw/mcux-sdk/enet
+    - repo_relative_path: osal
+    files:
+    - source: LICENSE
+      hidden: true
+      type: doc
+    - source: README.md
+      hidden: true
+      type: doc
+    - source: soem/**
+    - source: oshw/mcux-sdk/**
+    - source: osal/osal.h
+    - source: osal/baremetal/osal.c
+      components: middleware.baremetal
+    - source: osal/baremetal/osal_defs.h
+      components: middleware.baremetal
+    - source: osal/freertos/osal.c
+      components: middleware.freertos-kernel
+    - source: osal/freertos/osal_defs.h
+      components: middleware.freertos-kernel
+  belong_to: set.middleware.soem
+  section_info:
+    description: Simple Open EtherCAT Master Library
+    version: "${SOEM_VER}"
+    type: middleware
+    user_visible: always
+    full_name: SOEM
+    display_name: soem
+  dependency:
+    anyOf:
+    - middleware.baremetal
+    - middleware.freertos-kernel
+middleware.soem.unused:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    files:
+    - source: Doxyfile
+      hidden: true
+      type: doc
+    - source: drvcomment.txt
+      hidden: true
+      type: doc
+    - source: CMakeLists.txt
+      hidden: true
+    - source: doc/**
+      hidden: true
+      type: doc
+    - source: cmake/**
+      hidden: true
+    - source: oshw/erika/**
+      hidden: true
+    - source: oshw/intime/**
+      hidden: true
+    - source: oshw/linux/**
+      hidden: true
+    - source: oshw/macosx/**
+      hidden: true
+    - source: oshw/rtems/**
+      hidden: true
+    - source: oshw/rtk/**
+      hidden: true
+    - source: oshw/vxworks/**
+      hidden: true
+    - source: oshw/win32/**
+      hidden: true
+    - source: osal/erika/**
+      hidden: true
+    - source: osal/intime/**
+      hidden: true
+    - source: osal/linux/**
+      hidden: true
+    - source: osal/macosx/**
+      hidden: true
+    - source: osal/rtems/**
+      hidden: true
+    - source: osal/rtk/**
+      hidden: true
+    - source: osal/vxworks/**
+      hidden: true
+    - source: osal/win32/**
+      hidden: true
+    - source: test/**
+      hidden: true
+  belong_to: set.middleware.soem
+  section_info:
+    description: Simple Open EtherCAT unused files
+    version: "${SOEM_VER}"
+    type: middleware
+    user_visible: never
+    full_name: soem_unused
+    display_name: soem_unused
+set.middleware.soem:
+  section-type: set
+  belong_to: set.middleware.soem
+  section_info:
+    fixed_id: rt_labs_soem
+    version: "${SOEM_VER}"
+    display_name: SOEM
+    description: Simple Open EtherCAT Master Library
+    set_location:
+      repo_base_path: middleware/soem
+    type: middleware
+    vendor: NXP
+    product:
+      kex_package:
+        kex_web_ui:
+          ui_control: true
+          ui_release_specific: true
+          ui_control_default: false
+          ui_category: Middleware
+        scr:
+        - scr.middleware.soem
+      cmsis_pack:
+        vendor: NXP
+        supported: false
+        scr:
+        - scr.middleware.soem
+  dependency:
+    allOf:
+    - board:
+      - evkmimxrt1020
+      - evkmimxrt1024
+      - evkmimxrt1040
+      - evkbimxrt1050
+      - evkmimxrt1060
+      - evkbmimxrt1060
+      - evkcmimxrt1060
+      - evkmimxrt1064
+      - evkmimxrt1160
+      - evkmimxrt1170
+      - evkbmimxrt1170
+    - ip:
+      - DriverType_ENET
+license.soem:
+  section-type: license
+  belong_to: set.middleware.soem
+  contents:
+    repo_base_path: middleware/soem
+    files:
+    - source: LICENSE
+  section_info:
+    Outgoing License: GPL-2.0 with a special exception
+scr.middleware.soem:
+  belong_to: set.middleware.soem
+  section-type: scr
+  contents:
+    license:
+    - license.soem
+    Name: Simple Open EtherCAT Master Library (SOEM)
+    Version: 1.4.0
+    Format: source code
+    Description: An opensource EtherCAT master stack which is used to write custom
+      EtherCAT Master applications.
+    Location: middleware/soem
+    Origin: RT-Labs
+    Url: https://github.com/OpenEtherCATsociety/soem
