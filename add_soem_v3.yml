@@ -1,4 +1,6 @@
 ---
+# yaml-language-server: $schema=../../bin/generator/sdk_generator/data/sdk_data_schema/v3/software_set_and_project_schema.json
+
 __variable__:
   SOEM_VER: 1.4.0
 __load__:
@@ -39,15 +41,17 @@ middleware.soem:
     user_visible: always
     full_name: SOEM
     display_name: soem
+    taxonomy:
+      cclass: SOEM
+      cgroup: component
   dependency:
     anyOf:
     - middleware.baremetal
     - middleware.freertos-kernel
-middleware.soem.unused:
-  section-type: component
+container.middleware.soem:
+  section-type: container
   contents:
     repo_base_path: middleware/soem
-    project_base_path: soem
     files:
     - source: Doxyfile
       hidden: true
@@ -97,13 +101,6 @@ middleware.soem.unused:
     - source: test/**
       hidden: true
   belong_to: set.middleware.soem
-  section_info:
-    description: Simple Open EtherCAT unused files
-    version: "${SOEM_VER}"
-    type: middleware
-    user_visible: never
-    full_name: soem_unused
-    display_name: soem_unused
 set.middleware.soem:
   section-type: set
   belong_to: set.middleware.soem

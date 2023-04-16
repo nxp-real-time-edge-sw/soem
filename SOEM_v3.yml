@@ -16,8 +16,8 @@ docs.SOEM:
     full_name: SOEM documentation
     description: SOEM documentation
     taxonomy:
-      cclass: docs
-      cgroup: SOEM
+      cclass: SOEM
+      cgroup: docs
     product:
       cmsis_pack:
         supported: false
