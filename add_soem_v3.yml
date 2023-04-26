@@ -64,8 +64,6 @@ container.middleware.soem:
     - source: doc/**
       hidden: true
       type: doc
-    - source: cmake/**
-      hidden: true
     - source: oshw/erika/**
       hidden: true
     - source: oshw/intime/**
