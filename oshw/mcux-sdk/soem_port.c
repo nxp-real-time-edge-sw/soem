@@ -4,7 +4,6 @@
 */
 
 #include "fsl_phy.h"
-#include "fsl_enet_mdio.h"
 #include "soem_port.h"
 #include <string.h>
 #include "osal_defs.h"

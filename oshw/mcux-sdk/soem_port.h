@@ -6,7 +6,6 @@
 #ifndef __SOEM__PORT__
 #define __SOEM__PORT__
 #include "fsl_phy.h"
-#include "fsl_enet_mdio.h"
 #define SOEM_IF_PORT_MAXNUM  2
 #define SOEM_IF_NAME_MAXLEN  9
 #define SOEM_DEV_NAME_MAXLEN  9

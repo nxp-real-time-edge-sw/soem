@@ -46,7 +46,6 @@ if(NOT COMPONENT_SOEM_INCLUDED)
         target_include_directories(${MCUX_SDK_PROJECT_NAME} PRIVATE
             ${CMAKE_CURRENT_LIST_DIR}/oshw/mcux-sdk/enet/
         )
-        include(driver_mdio-common)
         include(driver_phy-common)
     endif()
 

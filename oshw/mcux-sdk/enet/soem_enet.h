@@ -7,11 +7,9 @@
 #define __SOEM_ENET_H___
 #include "fsl_enet.h"
 #include "fsl_phy.h"
-#include "fsl_mdio.h"
 #include  <stdint.h>
 
 struct enet_if_port {
-	mdio_handle_t mdioHandle;
 	phy_handle_t phyHandle;
 	enet_mii_mode_t mii_mode;
 	phy_config_t phy_config;

@@ -21,9 +21,6 @@ int enet_init(void *pri, uint8_t *macAddr)
     phy_speed_t speed;
     phy_duplex_t duplex;
     ENET_GetDefaultConfig(&config);
-    port->mdioHandle.resource.base  = port->base;
-    port->mdioHandle.resource.csrClock_Hz = port->srcClock_Hz;
-    port->phyHandle.mdioHandle = &port->mdioHandle;
     config.miiMode = port->mii_mode;
     do {
         status = PHY_Init(&port->phyHandle, &port->phy_config);
