@@ -74,6 +74,7 @@ soem_gpio_pulse_bm:
   belong_to: set.board.${board}
   dependency:
   - middleware.baremetal
+  - middleware.soem.enet
   - middleware.soem
   contents:
     document:
@@ -119,6 +120,7 @@ soem_gpio_pulse_freertos:
   belong_to: set.board.${board}
   dependency:
   - middleware.freertos-kernel
+  - middleware.soem.enet
   - middleware.soem
   contents:
     document:

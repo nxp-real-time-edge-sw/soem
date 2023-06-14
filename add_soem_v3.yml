@@ -5,6 +5,35 @@ __variable__:
   SOEM_VER: 1.4.0
 __load__:
 - middleware/soem/SOEM_v3.yml
+middleware.soem.enet:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: oshw/mcux-sdk/enet
+    files:
+    - source: oshw/mcux-sdk/nicdrv.c
+    - source: oshw/mcux-sdk/enet/soem_enet.h
+    - source: oshw/mcux-sdk/enet/enet.c
+    - source: oshw/mcux-sdk/enet/enet.h
+  belong_to: set.middleware.soem
+  section_info:
+    type: middleware
+    description: SOEM ENET
+    version: 1.0.0
+    vendor: NXP
+    user_visible: never
+    full_name: SOEM ENET
+    display_name: soem enet
+    taxonomy:
+      cclass: SOEM
+      cgroup: component
+  dependency:
+    anyOf:
+    - middleware.baremetal
+    - middleware.freertos-kernel
 middleware.soem:
   section-type: component
   contents:
@@ -13,8 +42,11 @@ middleware.soem:
     cc-include:
     - repo_relative_path: soem
     - repo_relative_path: oshw/mcux-sdk
-    - repo_relative_path: oshw/mcux-sdk/enet
     - repo_relative_path: osal
+    - repo_relative_path: osal/baremetal
+      components: middleware.baremetal
+    - repo_relative_path: osal/freertos
+      components: middleware.freertos-kernel
     files:
     - source: LICENSE
       hidden: true
@@ -23,7 +55,11 @@ middleware.soem:
       hidden: true
       type: doc
     - source: soem/**
-    - source: oshw/mcux-sdk/**
+    - source: oshw/mcux-sdk/nicdrv.h
+    - source: oshw/mcux-sdk/oshw.c
+    - source: oshw/mcux-sdk/oshw.h
+    - source: oshw/mcux-sdk/soem_port.c
+    - source: oshw/mcux-sdk/soem_port.h
     - source: osal/osal.h
     - source: osal/baremetal/osal.c
       components: middleware.baremetal
