@@ -31,6 +31,7 @@
 #include "ethercatconfig.h"
 #include "ethercatprint.h"
 #include "enet/soem_enet.h"
+#include "enet/enet.h"
 #include "soem_port.h"
 
 /*******************************************************************************

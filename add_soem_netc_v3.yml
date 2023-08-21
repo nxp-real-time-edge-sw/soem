@@ -1,0 +1,192 @@
+---
+# yaml-language-server: $schema=../../bin/generator/sdk_generator/data/sdk_data_schema/v3/software_set_and_project_schema.json
+
+__variable__:
+  SOEM_VER: 1.4.0
+__load__:
+- middleware/soem/SOEM_v3.yml
+middleware.soem.netc:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: oshw/mcux-sdk/netc_ep
+    files:
+    - source: oshw/mcux-sdk/nicdrv.c
+    - source: oshw/mcux-sdk/netc_ep/soem_netc_ep.h
+    - source: oshw/mcux-sdk/netc_ep/netc_ep.c
+    - source: oshw/mcux-sdk/netc_ep/netc_ep.h
+  belong_to: set.middleware.soem
+  section_info:
+    type: middleware
+    description: SOEM NETC
+    version: 1.0.0
+    vendor: NXP
+    user_visible: never
+    full_name: SOEM NETC
+    display_name: soem netc
+    taxonomy:
+      cclass: SOEM
+      cgroup: component
+  dependency:
+    anyOf:
+    - middleware.baremetal
+    - middleware.freertos-kernel
+middleware.soem:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: soem
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: osal
+    - repo_relative_path: osal/baremetal
+      components: middleware.baremetal
+    - repo_relative_path: osal/freertos
+      components: middleware.freertos-kernel
+    files:
+    - source: LICENSE
+      hidden: true
+      type: doc
+    - source: README.md
+      hidden: true
+      type: doc
+    - source: soem/**
+    - source: oshw/mcux-sdk/nicdrv.h
+    - source: oshw/mcux-sdk/oshw.c
+    - source: oshw/mcux-sdk/oshw.h
+    - source: oshw/mcux-sdk/soem_port.c
+    - source: oshw/mcux-sdk/soem_port.h
+    - source: osal/osal.h
+    - source: osal/baremetal/osal.c
+      components: middleware.baremetal
+    - source: osal/baremetal/osal_defs.h
+      components: middleware.baremetal
+    - source: osal/freertos/osal.c
+      components: middleware.freertos-kernel
+    - source: osal/freertos/osal_defs.h
+      components: middleware.freertos-kernel
+  belong_to: set.middleware.soem
+  section_info:
+    description: Simple Open EtherCAT Master Library
+    version: "${SOEM_VER}"
+    type: middleware
+    user_visible: always
+    full_name: SOEM
+    display_name: soem
+    taxonomy:
+      cclass: SOEM
+      cgroup: component
+  dependency:
+    anyOf:
+    - middleware.baremetal
+    - middleware.freertos-kernel
+container.middleware.soem:
+  section-type: container
+  contents:
+    repo_base_path: middleware/soem
+    files:
+    - source: Doxyfile
+      hidden: true
+      type: doc
+    - source: drvcomment.txt
+      hidden: true
+      type: doc
+    - source: CMakeLists.txt
+      hidden: true
+    - source: doc/**
+      hidden: true
+      type: doc
+    - source: oshw/erika/**
+      hidden: true
+    - source: oshw/intime/**
+      hidden: true
+    - source: oshw/linux/**
+      hidden: true
+    - source: oshw/macosx/**
+      hidden: true
+    - source: oshw/rtems/**
+      hidden: true
+    - source: oshw/rtk/**
+      hidden: true
+    - source: oshw/vxworks/**
+      hidden: true
+    - source: oshw/win32/**
+      hidden: true
+    - source: osal/erika/**
+      hidden: true
+    - source: osal/intime/**
+      hidden: true
+    - source: osal/linux/**
+      hidden: true
+    - source: osal/macosx/**
+      hidden: true
+    - source: osal/rtems/**
+      hidden: true
+    - source: osal/rtk/**
+      hidden: true
+    - source: osal/vxworks/**
+      hidden: true
+    - source: osal/win32/**
+      hidden: true
+    - source: test/**
+      hidden: true
+  belong_to: set.middleware.soem
+set.middleware.soem:
+  section-type: set
+  belong_to: set.middleware.soem
+  section_info:
+    fixed_id: rt_labs_soem
+    version: "${SOEM_VER}"
+    display_name: SOEM
+    description: Simple Open EtherCAT Master Library
+    set_location:
+      repo_base_path: middleware/soem
+    type: middleware
+    vendor: NXP
+    product:
+      kex_package:
+        kex_web_ui:
+          ui_control: true
+          ui_release_specific: true
+          ui_control_default: false
+          ui_category: Middleware
+        scr:
+        - scr.middleware.soem
+      cmsis_pack:
+        vendor: NXP
+        supported: false
+        scr:
+        - scr.middleware.soem
+  dependency:
+    allOf:
+    - board:
+      - evkmimxrt1180
+    - ip:
+      - DriverType_NETC
+license.soem:
+  section-type: license
+  belong_to: set.middleware.soem
+  contents:
+    repo_base_path: middleware/soem
+    files:
+    - source: LICENSE
+  section_info:
+    Outgoing License: GPL-2.0 with a special exception
+scr.middleware.soem:
+  belong_to: set.middleware.soem
+  section-type: scr
+  contents:
+    license:
+    - license.soem
+    Name: Simple Open EtherCAT Master Library (SOEM)
+    Version: 1.4.0
+    Format: source code
+    Description: An opensource EtherCAT master stack which is used to write custom
+      EtherCAT Master applications.
+    Location: middleware/soem
+    Origin: RT-Labs
+    Url: https://github.com/OpenEtherCATsociety/soem
