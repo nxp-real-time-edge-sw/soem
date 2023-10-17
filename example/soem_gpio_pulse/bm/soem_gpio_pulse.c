@@ -39,7 +39,7 @@
  ******************************************************************************/
 
 #define NUM_1M      (1000000UL)
-#define SOEM_PERIOD NUM_1M /* 1 second */
+#define SOEM_PERIOD 125 /* 125 us */
 
 #define OSEM_PORT_NAME "enet0"
 
@@ -150,12 +150,12 @@ void control_task(char *ifname)
             PRINTF("Operational state reached for all slaves.\r\n");
             /* cyclic loop */
             int is_expired;
+            ec_send_processdata();
             osal_gettime(&last_time);
             while (1)
             {
                 osal_gettime(&current_time);
                 timeradd(&current_time, &sleep_time, &target_time);
-                ec_send_processdata();
                 wkc = ec_receive_processdata(EC_TIMEOUTRET);
                 if (wkc >= expectedWKC)
                 {
@@ -194,8 +194,9 @@ void control_task(char *ifname)
                 if (!is_expired)
                 {
                     timersub(&target_time, &current_time, &sleep_time);
+                    ec_send_processdata();
                     osal_usleep(sleep_time.tv_usec);
-                    sleep_time.tv_usec = 125;
+                    sleep_time.tv_usec = SOEM_PERIOD;
                 }
                 else
                 {
@@ -216,7 +217,7 @@ int main(void)
 
     PRINTF("Start the soem_gpio_pulse baremetal example...\r\n");
 
-    osal_timer_init(SOEM_PERIOD, 0);
+    osal_timer_init(NUM_1M, 0);
     if_port_init();
     control_task(OSEM_PORT_NAME);
     return 0;
