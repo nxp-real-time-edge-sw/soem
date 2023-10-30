@@ -92,7 +92,7 @@ AT_NONCACHEABLE_SECTION_ALIGN(static uint8_t g_txFrame[EP_TXBUFF_SIZE], EP_BUFF_
 uint64_t rxBuffAddrArray[EP_RING_NUM][EP_RXBD_NUM];
 
 static netc_tx_frame_info_t g_txDirty[EP_RING_NUM][EP_TXBD_NUM];
-static netc_tx_frame_info_t txFrameInfo = {0};
+//static netc_tx_frame_info_t txFrameInfo = {0};
 //static volatile bool txOver;
 
 static char IOmap[100];
@@ -167,11 +167,11 @@ void msgintrCallback(MSGINTR_Type *base, uint8_t channel, uint32_t pendingIntr)
     }
 }
 
-static status_t ReclaimCallback(ep_handle_t *handle, uint8_t ring, netc_tx_frame_info_t *frameInfo, void *userData)
-{
-    txFrameInfo = *frameInfo;
-    return kStatus_Success;
-}
+//static status_t ReclaimCallback(ep_handle_t *handle, uint8_t ring, netc_tx_frame_info_t *frameInfo, void *userData)
+//{
+//    txFrameInfo = *frameInfo;
+//    return kStatus_Success;
+//}
 
 void osal_gettime(struct timeval *current_time)
 {
@@ -244,7 +244,7 @@ static int if_port_init(void)
     ep_config.si                    = kNETC_ENETC0PSI0;
     ep_config.siConfig.txRingUse    = 1;
     ep_config.siConfig.rxRingUse    = 1;
-    ep_config.reclaimCallback       = ReclaimCallback;
+    //ep_config.reclaimCallback       = ReclaimCallback;
     ep_config.msixEntry             = &msixEntry[0];
     ep_config.entryNum              = 2;
     ep_config.port.ethMac.miiMode   = kNETC_RmiiMode;
