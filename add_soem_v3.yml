@@ -34,7 +34,7 @@ middleware.soem.enet:
     anyOf:
     - middleware.baremetal
     - middleware.freertos-kernel
-middleware.soem:
+middleware.soem.bm:
   section-type: component
   contents:
     repo_base_path: middleware/soem
@@ -45,8 +45,6 @@ middleware.soem:
     - repo_relative_path: osal
     - repo_relative_path: osal/baremetal
       components: middleware.baremetal
-    - repo_relative_path: osal/freertos
-      components: middleware.freertos-kernel
     files:
     - source: LICENSE
       hidden: true
@@ -65,6 +63,45 @@ middleware.soem:
       components: middleware.baremetal
     - source: osal/baremetal/osal_defs.h
       components: middleware.baremetal
+  belong_to: set.middleware.soem
+  section_info:
+    description: Simple Open EtherCAT Master Library
+    version: "${SOEM_VER}"
+    type: middleware
+    user_visible: always
+    full_name: SOEM
+    display_name: soem
+    taxonomy:
+      cclass: SOEM
+      cgroup: component
+  dependency:
+    anyOf:
+    - middleware.baremetal
+middleware.soem.freertos:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: soem
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: osal
+    - repo_relative_path: osal/freertos
+      components: middleware.freertos-kernel
+    files:
+    - source: LICENSE
+      hidden: true
+      type: doc
+    - source: README.md
+      hidden: true
+      type: doc
+    - source: soem/**
+    - source: oshw/mcux-sdk/nicdrv.h
+    - source: oshw/mcux-sdk/oshw.c
+    - source: oshw/mcux-sdk/oshw.h
+    - source: oshw/mcux-sdk/soem_port.c
+    - source: oshw/mcux-sdk/soem_port.h
+    - source: osal/osal.h
     - source: osal/freertos/osal.c
       components: middleware.freertos-kernel
     - source: osal/freertos/osal_defs.h
@@ -82,7 +119,6 @@ middleware.soem:
       cgroup: component
   dependency:
     anyOf:
-    - middleware.baremetal
     - middleware.freertos-kernel
 container.middleware.soem:
   section-type: container

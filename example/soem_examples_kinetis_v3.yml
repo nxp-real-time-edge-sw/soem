@@ -75,7 +75,7 @@ soem_gpio_pulse_bm:
   dependency:
   - middleware.baremetal
   - middleware.soem.enet
-  - middleware.soem
+  - middleware.soem.bm
   contents:
     document:
       name: soem_gpio_pulse_bm
@@ -121,7 +121,7 @@ soem_gpio_pulse_freertos:
   dependency:
   - middleware.freertos-kernel
   - middleware.soem.enet
-  - middleware.soem
+  - middleware.soem.freertos
   contents:
     document:
       name: soem_gpio_pulse_freertos

@@ -34,6 +34,7 @@
 #include "enet/enet.h"
 #include "soem_port.h"
 #include "FreeRTOS.h"
+#include "task.h"
 
 /*******************************************************************************
  * Definitions
