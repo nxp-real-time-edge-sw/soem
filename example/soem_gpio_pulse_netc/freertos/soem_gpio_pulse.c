@@ -37,6 +37,7 @@
 #include "netc_ep/netc_ep.h"
 #include "soem_port.h"
 #include "FreeRTOS.h"
+#include "task.h"
 
 /*******************************************************************************
  * Definitions
