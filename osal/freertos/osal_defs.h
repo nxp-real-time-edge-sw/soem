@@ -11,10 +11,9 @@
 #define _osal_defs_
 #include "FreeRTOS.h"
 #include "semphr.h"
-#include "soem_config.h"
 
 #ifdef EC_DEBUG
-#define EC_PRINT printf
+#define EC_PRINT PRINTF
 #else
 #define EC_PRINT(...) do {} while (0)
 #endif
