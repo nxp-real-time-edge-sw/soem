@@ -3,6 +3,10 @@
  * LICENSE file in the project root for full license information
  */
 
+/*
+ * Copyright 2022, 2024 NXP
+ */
+
 #ifndef __SOEM__PORT__
 #define __SOEM__PORT__
 
