@@ -30,6 +30,27 @@ uint32_t rx_pdo_entry[1][3] = {
 	}
 };
 
+int servo_pdo_activate_map(struct servo_t *servo)
+{
+	int slave = servo->slave_id + 1;
+	uint16 map_1c12[2] = {0x0001, 0x1600};
+	uint16 map_1c13[2] = {0x0001, 0x1a00};
+	uint8_t map_6060 = 8;
+	uint16 num_16b = 0;
+
+	ec_SDOwrite(slave, 0x1c12, 0x00, 0, 2, &num_16b, EC_TIMEOUTSAFE);
+	ec_SDOwrite(slave, 0x1c13, 0x00, 0, 2, &num_16b, EC_TIMEOUTSAFE);
+	
+	ec_SDOwrite(slave, 0x1c12, 0x01, 0, sizeof(map_1c12[1]), &map_1c12[1], EC_TIMEOUTSAFE);
+	ec_SDOwrite(slave, 0x1c12, 0x00, 0, sizeof(map_1c12[0]), &map_1c12[0], EC_TIMEOUTSAFE);
+
+	ec_SDOwrite(slave, 0x1c13, 0x01, 0, sizeof(map_1c13[1]), &map_1c13[1], EC_TIMEOUTSAFE);
+	ec_SDOwrite(slave, 0x1c13, 0x00, 0, sizeof(map_1c13[0]), &map_1c13[0], EC_TIMEOUTSAFE);
+	
+	ec_SDOwrite(slave, 0x6060, 0x00, 0, 1, &map_6060, EC_TIMEOUTSAFE);
+	return 0;
+}
+
 int servo_pdo_remap(struct servo_t *servo)
 {
 	int slave = servo->slave_id + 1;

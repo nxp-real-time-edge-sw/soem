@@ -1,25 +1,17 @@
 Overview
 ========
-This example demonstrates how to use the Simple Open EtherCAT Master (SOEM) Library to communicate with EtherCAT servo-motor to test boards performance.
+This example demonstrates how to use the Simple Open EtherCAT Master (SOEM) Library to control servo-motor.
 
-In this example there are 31 servo-motor:
-	XINJE_DS5C1    * 15
-	DELTA_ASDA_B3  * 2
-	HCFA_X6B       * 2
-	HCFA_X3E       * 6
-	INOVANCE_SV680 * 6
-
-By raising the pin of the LED light before sending the Ethercat packet and lowering the pin of the LED light after sending the Ethercat packet. Measure the interval time using an oscilloscope to evaluate SOEM performance.
+In this example there are 2 servo-motor:
+	DELTA_ASDA_B3  * 1
+	INOVANCE_SV680 * 1
 
 
 Running the demo
 ================
 If the test passes, D6 LED light will light up and the motor will start to retate.
 
-Then, user can connect the oscilloscope to R35 register to observe processing time and jitter.
-
 When the demo is running, the serial port will output:
-
 
 NETC EP frame loopback example start.
 Starting motion task
@@ -46,4 +38,7 @@ Request operational state for all slaves
 Calculated workcounter 93
 Operational state reached for all slaves.
 
+
+User can connect the oscilloscope to R35 register to observe processing time and jitter.
+By raising the pin of the LED light before sending the Ethercat packet and lowering the pin of the LED light after sending the Ethercat packet. Measure the interval time using an oscilloscope to evaluate SOEM performance.
 Note: Detailed SOEM performance please refter to EtherCAT Benchamrk.

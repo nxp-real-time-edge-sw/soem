@@ -98,27 +98,17 @@
 #define ENET_RXBUFF_SIZE (ENET_FRAME_MAX_FRAMELEN)
 #define ENET_TXBUFF_SIZE (ENET_FRAME_MAX_FRAMELEN)
 
-#define ds5c1_VendorId 0x00000556
-#define ds5c1_ProductID 0x10305071
-
-#define hcfa_y7_VendorId 0x000116c7
-#define hcfa_y7_ProductID 0x007e0402
-
 #define asda_b3_VendorId 0x000001dd
 #define asda_b3_ProductID 0x00006080
-
-#define hcfa_x6b_VendorId 0x000116c7
-#define hcfa_x6b_ProductID 0x006b0402
-
-
-#define hcfa_x3e_VendorId 0x000116c7
-#define hcfa_x3e_ProductID 0x003e0402
 
 #define sv680_VendorId 0x00100000
 #define sv680_ProductID 0x000c0116
 
-#define MAX_SERVO 31
-#define MAX_AXIS 31
+#define nxp_VendorId 0x00000CC2
+#define nxp_ProductID 0x00000002
+
+#define MAX_SERVO 2
+#define MAX_AXIS 2
 
 /*******************************************************************************
  * Variables
@@ -139,51 +129,15 @@ uint64_t rxBuffAddrArray[EP_RING_NUM][EP_RXBD_NUM];
 
 static netc_tx_frame_info_t g_txDirty[EP_RING_NUM][EP_TXBD_NUM];
 static netc_tx_frame_info_t txFrameInfo = {0};
-//static volatile bool txOver;
 
 static char IOmap[1500];
 
 static char *tp[MAX_SERVO] = {
 
-// xinje
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-
-// delta
-"Cyclic=1; Scale=46603; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
+// DELTA
 "Cyclic=1; Scale=46603; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
 
-// hcfa x6
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-
-// hcfa x3
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-"Cyclic=1; Scale=364; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(90:1000),(90:2000),(0:1000)];",
-
-// INO
-"Cyclic=1; Scale=186414; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
-"Cyclic=1; Scale=186414; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
-"Cyclic=1; Scale=186414; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
-"Cyclic=1; Scale=186414; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
-"Cyclic=1; Scale=186414; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
+// INOVANCE
 "Cyclic=1; Scale=186414; Bias=0; Accel=8; Decel=8; Max_speed=3600; TpArrays=[(0:2000),(270:1000),(270:2000),(180:1000),(180:2000),(0:1000),(0:2000),(0:1000)];",
 
 };
@@ -250,27 +204,12 @@ static void EtherCAT_servo_init(struct servo_t *svo, struct axis_t *ax)
 		svo[i].axis_num = 1;
 	}
 	
-	for (i = 0; i < 15; i++) {
-		svo[i].VendorId = ds5c1_VendorId;
-		svo[i].ProductID = ds5c1_ProductID;
-	}
-
-	for (i = 15; i < 17; i++) {
+	for (i = 0; i < 1; i++) {
 		svo[i].VendorId = asda_b3_VendorId;
 		svo[i].ProductID = asda_b3_ProductID;
 	}
 
-	for (i = 17; i < 19; i++) {
-		svo[i].VendorId = hcfa_x6b_VendorId;
-		svo[i].ProductID = hcfa_x6b_ProductID;
-	}
-	
-	for (i = 19; i < 25; i++) {
-		svo[i].VendorId = hcfa_x3e_VendorId;
-		svo[i].ProductID = hcfa_x3e_ProductID;
-	}
-
-    for (i = 25; i < 31; i++) {
+    for (i = 1; i < 2; i++) {
 		svo[i].VendorId = sv680_VendorId;
 		svo[i].ProductID = sv680_ProductID;
 	}
@@ -295,6 +234,32 @@ static int general_servo_setup(uint16 slave) {
 	if (svo) {
 		while (chk--) {
 			ret = servo_pdo_remap(svo);
+			if (ret)
+				break;
+		}
+	}
+
+	if (!ret)
+		return 0;
+	else
+		return -1;
+}
+
+
+static int nxp_servo_setup(uint16 slave) {
+	int i;
+	int ret = 0;
+	int chk = 10;
+	struct servo_t *svo = NULL;
+	for (i = 0; i < MAX_SERVO; i++) {
+		if (servo[i].slave_id + 1 == slave) {
+			svo = &servo[i];
+			break;
+		}
+	}
+	if (svo) {
+		while (chk--) {
+			ret = servo_pdo_activate_map(svo);
 			if (ret)
 				break;
 		}
@@ -353,6 +318,9 @@ static void servo_setup(struct servo_t *servo, int servo_num) {
 	for (i = 0; i < servo_num; i++) {
 		if (servo[i].VendorId == asda_b3_VendorId && servo[i].ProductID == asda_b3_ProductID) {
 			servo[i].slave->PO2SOconfig = asda_b3_servo_setup;
+		} else if (servo[i].VendorId == nxp_VendorId && servo[i].ProductID == nxp_ProductID) {
+			servo[i].slave->PO2SOconfig = nxp_servo_setup;
+			PRINTF("\r\n nxp_servo_setup success!\r\n");
 		} else {
 			servo[i].slave->PO2SOconfig = general_servo_setup;
 		}
@@ -640,14 +608,16 @@ void control_task(char *ifname)
 				PRINTF("Operational state reached for all slaves.\r\n");
 				/* send one valid process data to make outputs in slaves happy*/
 				ec_send_processdata();
-			
+				
 				target_time = gettime();
 				int op_num = 0;
 				while (1) {
 					RGPIO_WritePinOutput(BOARD_LED_RGPIO, BOARD_LED_RGPIO_PIN, 1);
 					target_time += CYCLE_PERIOD_NS;
+					/* SOEM receive data */
 					wkc = ec_receive_processdata(EC_TIMEOUTRET);
 
+					/* servo motor application processing code */
 					for(i = 0; i < MAX_AXIS; i++) {
 						if (axis_start(&axis[i], op_mode_csp) != 1) {
 								op_num++;
@@ -674,6 +644,8 @@ void control_task(char *ifname)
 					} else {
 						op_num = 0;
 					}
+
+					/* SOEM transmit data */
 					ec_send_processdata();
 					curr_time = gettime();
 					RGPIO_WritePinOutput(BOARD_LED_RGPIO, BOARD_LED_RGPIO_PIN, 0);
