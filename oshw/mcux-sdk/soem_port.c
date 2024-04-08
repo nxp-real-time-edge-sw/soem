@@ -4,7 +4,7 @@
  */
 
 /*
- * Copyright 2022, 2024 NXP
+ * Copyright 2022-2024 NXP
  */
 
 #include <string.h>

@@ -4,7 +4,7 @@
  */
 
 /*
- * Copyright 2022, 2024 NXP
+ * Copyright 2022-2024 NXP
  */
 
 #ifndef __SOEM_ENET_H___
