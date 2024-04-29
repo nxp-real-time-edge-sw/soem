@@ -34,6 +34,35 @@ middleware.soem.enet:
     anyOf:
     - middleware.baremetal
     - middleware.freertos-kernel
+middleware.soem.netc:
+  section-type: component
+  contents:
+    repo_base_path: middleware/soem
+    project_base_path: soem
+    cc-include:
+    - repo_relative_path: oshw/mcux-sdk
+    - repo_relative_path: oshw/mcux-sdk/netc_ep
+    files:
+    - source: oshw/mcux-sdk/nicdrv.c
+    - source: oshw/mcux-sdk/netc_ep/soem_netc_ep.h
+    - source: oshw/mcux-sdk/netc_ep/netc_ep.c
+    - source: oshw/mcux-sdk/netc_ep/netc_ep.h
+  belong_to: set.middleware.soem
+  section_info:
+    type: middleware
+    description: SOEM NETC
+    version: 1.0.0
+    vendor: NXP
+    user_visible: never
+    full_name: SOEM NETC
+    display_name: soem netc
+    taxonomy:
+      cclass: SOEM
+      cgroup: component
+  dependency:
+    anyOf:
+    - middleware.baremetal
+    - middleware.freertos-kernel
 middleware.soem.bm:
   section-type: component
   contents:
@@ -198,21 +227,27 @@ set.middleware.soem:
         scr:
         - scr.middleware.soem
   dependency:
-    allOf:
-    - board:
-      - evkmimxrt1020
-      - evkmimxrt1024
-      - evkmimxrt1040
-      - evkbimxrt1050
-      - evkmimxrt1060
-      - evkbmimxrt1060
-      - evkcmimxrt1060
-      - evkmimxrt1064
-      - evkmimxrt1160
-      - evkmimxrt1170
-      - evkbmimxrt1170
-    - ip:
-      - DriverType_ENET
+    anyOf:
+    - allOf:
+      - board:
+        - evkmimxrt1020
+        - evkmimxrt1024
+        - evkmimxrt1040
+        - evkbimxrt1050
+        - evkmimxrt1060
+        - evkbmimxrt1060
+        - evkcmimxrt1060
+        - evkmimxrt1064
+        - evkmimxrt1160
+        - evkmimxrt1170
+        - evkbmimxrt1170
+      - ip:
+        - DriverType_ENET
+    - allOf:
+      - board:
+        - evkmimxrt1180
+      - ip:
+        - DriverType_NETC
 license.soem:
   section-type: license
   belong_to: set.middleware.soem
