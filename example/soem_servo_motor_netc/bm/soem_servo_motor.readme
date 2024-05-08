@@ -15,7 +15,7 @@ When the demo is running, the serial port will output:
 
 NETC EP frame loopback example start.
 Starting motion task
-ec_init on netc0 succeeded.
+ec_init on EtherCAT0 succeeded.
 ec_config_init 0
 Copy SII slave 2 from 1.
 Copy SII slave 3 from 1.

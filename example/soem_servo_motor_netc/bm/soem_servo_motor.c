@@ -90,7 +90,7 @@
 
 #define CYCLE_PERIOD_NS 1000000 // 1ms
 
-#define SOEM_PORT_NAME "netc0"
+#define SOEM_PORT_NAME "EtherCAT0"
 
 #define ENET_RXBD_NUM (4)
 #define ENET_TXBD_NUM (4)
