@@ -11,6 +11,7 @@
 #ifndef _ethercatmain_
 #define _ethercatmain_
 
+#include "soem_config.h"
 
 #ifdef __cplusplus
 extern "C"
