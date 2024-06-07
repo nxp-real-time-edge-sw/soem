@@ -11,7 +11,9 @@
 #define _osal_defs_
 #include "FreeRTOS.h"
 #include "semphr.h"
+#if __has_include("soem_config.h")
 #include "soem_config.h"
+#endif 
 
 #ifdef EC_DEBUG
 #define EC_PRINT PRINTF
