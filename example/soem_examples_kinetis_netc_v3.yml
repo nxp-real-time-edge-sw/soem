@@ -80,7 +80,7 @@ soem_gpio_pulse_bm:
     document:
       name: soem_gpio_pulse_bm
       readme:
-      - boards/${board}/soem_examples/soem_gpio_pulse/board.readme
+      - boards/${board}/soem_examples/soem_gpio_pulse/bm/board.readme
       - middleware/soem/example/soem_gpio_pulse_netc/bm/soem_gpio_pulse.readme
       category: soem_examples
       brief: An EtherCAT example with baremetal using SOEM.
@@ -120,7 +120,7 @@ soem_gpio_pulse_freertos:
     document:
       name: soem_gpio_pulse_freertos
       readme:
-      - boards/${board}/soem_examples/soem_gpio_pulse/board.readme
+      - boards/${board}/soem_examples/soem_gpio_pulse/freertos/board.readme
       - middleware/soem/example/soem_gpio_pulse_netc/freertos/soem_gpio_pulse.readme
       category: soem_examples
       brief: An EtherCAT example with freertos using SOEM.
@@ -168,7 +168,7 @@ soem_servo_motor_bm:
     document:
       name: soem_servo_motor_bm
       readme:
-      - boards/${board}/soem_examples/soem_servo_motor/board.readme
+      - boards/${board}/soem_examples/soem_servo_motor/bm/board.readme
       - middleware/soem/example/soem_servo_motor_netc/bm/soem_servo_motor.readme
       category: soem_examples
       brief: An EtherCAT example with baremetal using SOEM.

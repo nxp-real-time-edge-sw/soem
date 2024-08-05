@@ -80,7 +80,7 @@ soem_gpio_pulse_bm:
     document:
       name: soem_gpio_pulse_bm
       readme:
-      - boards/${board}/soem_examples/soem_gpio_pulse/board.readme
+      - boards/${board}/soem_examples/soem_gpio_pulse/bm/board.readme
       - middleware/soem/example/soem_gpio_pulse/bm/soem_gpio_pulse.readme
       category: soem_examples
       brief: An EtherCAT example with baremetal using SOEM.
@@ -99,16 +99,16 @@ soem_gpio_pulse_bm:
         - path: boards/${board}/soem_examples/soem_gpio_pulse/bm/${multicore_foldername}
           project_path: source
         files:
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/pin_mux.c
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/bm/${multicore_foldername}/pin_mux.c
           package_path: project-root-path
           project_path: board
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/pin_mux.h
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/bm/${multicore_foldername}/pin_mux.h
           package_path: project-root-path
           project_path: board
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/hardware_init.c
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/bm/${multicore_foldername}/hardware_init.c
           merge-to-main: sub
           project_path: board
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/app.h
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/bm/${multicore_foldername}/app.h
           merge-to-main: sub
           project_path: board
         - source: middleware/soem/example/soem_gpio_pulse/bm/soem_gpio_pulse.c
@@ -126,7 +126,7 @@ soem_gpio_pulse_freertos:
     document:
       name: soem_gpio_pulse_freertos
       readme:
-      - boards/${board}/soem_examples/soem_gpio_pulse/board.readme
+      - boards/${board}/soem_examples/soem_gpio_pulse/freertos/board.readme
       - middleware/soem/example/soem_gpio_pulse/freertos/soem_gpio_pulse.readme
       category: soem_examples
       brief: An EtherCAT example with freertos using SOEM.
@@ -145,16 +145,16 @@ soem_gpio_pulse_freertos:
         - path: boards/${board}/soem_examples/soem_gpio_pulse/freertos/${multicore_foldername}
           project_path: source
         files:
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/pin_mux.c
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/freertos/${multicore_foldername}/pin_mux.c
           package_path: project-root-path
           project_path: board
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/pin_mux.h
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/freertos/${multicore_foldername}/pin_mux.h
           package_path: project-root-path
           project_path: board
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/hardware_init.c
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/freertos/${multicore_foldername}/hardware_init.c
           merge-to-main: sub
           project_path: board
-        - source: boards/${board}/soem_examples/soem_gpio_pulse/app.h
+        - source: boards/${board}/soem_examples/soem_gpio_pulse/freertos/${multicore_foldername}/app.h
           merge-to-main: sub
           project_path: board
         - source: middleware/soem/example/soem_gpio_pulse/freertos/soem_gpio_pulse.c
