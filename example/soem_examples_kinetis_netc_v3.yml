@@ -215,3 +215,61 @@ soem_servo_motor_bm:
         - source: middleware/soem/example/soem_servo_motor_netc/bm/servo.h
           package_path: project-root-path
           project_path: source
+soem_servo_motor_rt1180_bm:
+  section-type: application
+  belong_to: set.board.${board}
+  dependency:
+  - middleware.baremetal
+  - middleware.soem.netc
+  - middleware.soem.bm
+  contents:
+    document:
+      name: soem_servo_motor_bm
+      readme:
+      - boards/${board}/soem_examples/soem_servo_motor_rt1180/bm/board.readme
+      - middleware/soem/example/soem_servo_motor_netc_rt1180/bm/soem_servo_motor.readme
+      category: soem_examples
+      brief: An EtherCAT example with baremetal using SOEM.
+    project-root-path: boards/${board}/soem_examples/soem_servo_motor_rt1180/bm/${multicore_foldername}
+    configuration:
+      tools:
+    modules:
+      demo:
+        required: true
+        cc-include:
+        - path: middleware/soem/osal/baremetal
+          project_path: soem/osal/baremetal
+        - path: boards/${board}/soem_examples/soem_servo_motor_rt1180/bm/${multicore_foldername}
+          project_path: source
+        as-include:
+        - path: boards/${board}/soem_examples/soem_servo_motor_rt1180/bm/${multicore_foldername}
+          project_path: source
+        files:
+        - source: boards/${board}/soem_examples/soem_servo_motor_rt1180/bm/${multicore_foldername}/pin_mux.c
+          package_path: project-root-path
+          project_path: board
+        - source: boards/${board}/soem_examples/soem_servo_motor_rt1180/bm/${multicore_foldername}/pin_mux.h
+          package_path: project-root-path
+          project_path: board
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/soem_servo_motor.c
+          merge-to-main: main
+          package_path: project-root-path
+          project_path: source
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/axis_nc.c
+          package_path: project-root-path
+          project_path: source
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/axis_nc.h
+          package_path: project-root-path
+          project_path: source
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/cia402.c
+          package_path: project-root-path
+          project_path: source
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/cia402.h
+          package_path: project-root-path
+          project_path: source
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/servo.c
+          package_path: project-root-path
+          project_path: source
+        - source: middleware/soem/example/soem_servo_motor_netc_rt1180/bm/servo.h
+          package_path: project-root-path
+          project_path: source
