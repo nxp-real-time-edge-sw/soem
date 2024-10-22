@@ -9,7 +9,6 @@ menu "SOEM"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.enet_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.enet_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.baremetal"
-                select MCUX_COMPONENT_middleware.baremetal
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.enet_DEPEND_ANYOF_1_OPTION_2
                 bool "Select MCUX_COMPONENT_middleware.freertos-kernel"
                 select MCUX_COMPONENT_middleware.freertos-kernel
@@ -24,7 +23,6 @@ menu "SOEM"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.baremetal"
-                select MCUX_COMPONENT_middleware.baremetal
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_DEPEND_ANYOF_1_OPTION_2
                 bool "Select MCUX_COMPONENT_middleware.freertos-kernel"
                 select MCUX_COMPONENT_middleware.freertos-kernel
@@ -39,7 +37,6 @@ menu "SOEM"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.bm_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.bm_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.baremetal"
-                select MCUX_COMPONENT_middleware.baremetal
         endchoice
     endif
     config MCUX_COMPONENT_middleware.soem.freertos
