@@ -1,11 +1,11 @@
 
 menu "SOEM"
     config MCUX_COMPONENT_middleware.soem.enet
-        bool "Component middleware.soem.enet"
+        bool "enet"
         
     if MCUX_COMPONENT_middleware.soem.enet
         choice
-            prompt "Component middleware.soem.enet anyOf 1"
+            prompt "enet anyOf 1"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.enet_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.enet_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.baremetal"
@@ -15,11 +15,11 @@ menu "SOEM"
         endchoice
     endif
     config MCUX_COMPONENT_middleware.soem.netc
-        bool "Component middleware.soem.netc"
+        bool "netc"
         
     if MCUX_COMPONENT_middleware.soem.netc
         choice
-            prompt "Component middleware.soem.netc anyOf 1"
+            prompt "netc anyOf 1"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.baremetal"
@@ -29,22 +29,22 @@ menu "SOEM"
         endchoice
     endif
     config MCUX_COMPONENT_middleware.soem.bm
-        bool "Component middleware.soem.bm"
+        bool "bm"
         
     if MCUX_COMPONENT_middleware.soem.bm
         choice
-            prompt "Component middleware.soem.bm anyOf 1"
+            prompt "bm anyOf 1"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.bm_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.bm_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.baremetal"
         endchoice
     endif
     config MCUX_COMPONENT_middleware.soem.freertos
-        bool "Component middleware.soem.freertos"
+        bool "freertos"
         
     if MCUX_COMPONENT_middleware.soem.freertos
         choice
-            prompt "Component middleware.soem.freertos anyOf 1"
+            prompt "freertos anyOf 1"
             default MCUX_DEPENDENCY_COMPONENT_middleware.soem.freertos_DEPEND_ANYOF_1_OPTION_1
             config MCUX_DEPENDENCY_COMPONENT_middleware.soem.freertos_DEPEND_ANYOF_1_OPTION_1
                 bool "Select MCUX_COMPONENT_middleware.freertos-kernel"
