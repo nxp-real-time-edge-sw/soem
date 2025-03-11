@@ -3,10 +3,11 @@ NXP Software Content Register
 --------------------------------------------
 
 Package:                     SOEM.git
-Outgoing License:            GPL-2.0
-License File:                gpl-2.0.txt
+Outgoing License:            GPL-2.0-with-exception
+License File:                LICENSE
 Type of Content:             Source code
 Description and comments:    Simple Open EtherCAT Master Library
 Release Location:            https://github.com/NXPmicro/SOEM.git
-Origin:                      NXP (GPL-2.0)
-                             SOEM (GPL-2.0) - https://github.com/OpenEtherCATsociety/soem
+Origin:                      SOEM (GPL-2.0-with-exception) - https://github.com/OpenEtherCATsociety/soem
+                             NXP (BSD 3-clause)
+
