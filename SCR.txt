@@ -3,6 +3,7 @@ NXP Software Content Register
 --------------------------------------------
 
 Package:                     SOEM.git
+Version:                     1.4.0
 Outgoing License:            GPL-2.0-with-exception
 License File:                LICENSE
 Type of Content:             Source code
