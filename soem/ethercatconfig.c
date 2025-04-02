@@ -316,7 +316,6 @@ int ecx_config_init(ecx_contextt *context, uint8 usetable)
    int wkc, cindex, nSM;
    uint16 val16;
 
-   printf("-------%s %s %d \n",__FILE__, __func__, __LINE__);
    ecx_init_context(context);
    wkc = ecx_detect_slaves(context);
    if (wkc > 0)

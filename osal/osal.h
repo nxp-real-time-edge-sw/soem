@@ -12,7 +12,6 @@
 
 #include <stdint.h>
 #include "osal_defs.h"
-#include "fsl_debug_console.h"
 
 /* General types */
 typedef uint8_t             boolean;
