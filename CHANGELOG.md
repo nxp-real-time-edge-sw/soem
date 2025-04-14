@@ -1,32 +1,52 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.1.2]
 Version 1.1.2 : 2008-12-23
 - First public release
+
+## [1.1.3]
 Version 1.1.3 : 2009-01-18
 - Added CoE, RxPDO and TxPDO (still Beta)
 - Added FoE, Read and Write (still Beta)
 - Fixed BigEndian conversion missing in ethercatconfig.c (credit:Serge Bloch)
 - Fixed segmented transfer bug in ethercatcoe.c
+
+## [1.1.4]
 Version 1.1.4 : 2009-04-22
 - Changed FMMU configuration algorithm
 - Changed ec_slave structure around SM and FMMU storage
 - Added SYNC1 configuration
 - Fixed bug in FoE write
+
+## [1.2.0]
 Version 1.2.0 : 2009-09-12
 - Changed the license to GPLv2 only
 - Added note to usage terms (please read carefully)
 - Eeprom acces is released to slave after preop
 - Fixed linux-64 define bug (uint32 and int32)
 - Fixed maximum frame size
+
+## [1.2.2]
 Version 1.2.2 : 2010-02-22
 - Fixed bugs in ec_adddatagram.
 - Fixed several bugs in CoE object dictionary read functions.
 - Fixed bug in PDO mapping read function.
 - Changed ec_slave structure around topology and delay variables.
 - Added several constants in ethercattype.c
+
+## [1.2.3]
 Version 1.2.3 : 2010-03-07
 - Clear SM enable if size is 0, even if enable is set in SII.
 - Fixed bug in DC propagation delay calculation. Branches with only non DC slaves now correctly close root port.
 - Fixed bug in ec_receive_processdata(), wkc now checks for EC_NOFRAME instead of 0.
 - Fixed bug in makefile
+
+## [1.2.4]
 Version 1.2.4 : 2010-04-10
 - Added SoE, servo over EtherCAT support.
 - Added SoE read request and write request.
@@ -34,6 +54,8 @@ Version 1.2.4 : 2010-04-10
 - Added SoE error response.
 - Added SoE errors to print module.
 - Added Auto config of SoE process data.
+
+## [1.2.5]
 Version 1.2.5 : 2011-06-13
 - Added eepromtool, it can read and write the ESC eeprom of a designated slave.
 - Rewrite of eeprom read/write functions.
@@ -48,6 +70,8 @@ Version 1.2.5 : 2011-06-13
 - Fixed siigetbyte() unaligned copy.
 - Fixed bug in nicdrv.c, socket handles are 0 included.
 - Fixed bug in ethercatconfig.c causing memory corruption.
+
+## [1.2.8]
 Version 1.2.8 : 2012-06-14
 - Changed directory structure.
 - Changed make file.
@@ -64,6 +88,8 @@ Version 1.2.8 : 2012-06-14
 - Fixed bug in table lookup for printing
 - Rewrite of ec_recover_slave() and ec_reconfigure_slave()
 - Added -map option in slaveinfo, shows SOEM IO mapping of all slaves found.
+
+## [1.3.0]
 Version 1.3.0 : 2013-02-24
 - Added win32 target.
 - Added rtk target.
@@ -78,14 +104,24 @@ Version 1.3.0 : 2013-02-24
 - Fixed linux gettimeofday() to get_clock().
 - Fixed eeprom cache flush on reinit.
 - Fixed make for new gcc linker version.
+
+## [1.3.1]
 Version 1.3.1 : 2015-03-11
 - Added intime target.
 - Added rtk\fec target.
 - Compiles under gcc / visual-c / borland-c / intime.
 - Added multi-threaded configuration for parallel configurations of slaves
+
+## [1.3.2]
 Version 1.3.2 : 2018-02-02
  - Made a mistake. DON'T USE!
+
+ ## [1.3.3]
 Version 1.3.3 : 2018-02-02
 - Added rtems target.
 - Added support for overlapping IOmap.
+
+
+
+
 
