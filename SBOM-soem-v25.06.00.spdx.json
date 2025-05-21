@@ -2,13 +2,13 @@
   "SPDXID": "SPDXRef-DOCUMENT",
   "spdxVersion": "SPDX-2.3",
   "creationInfo": {
-    "created": "2025-05-15T08:57:20Z",
+    "created": "2025-05-21T03:08:07Z",
     "creators": [
       "Organization: NXP"
     ],
     "licenseListVersion": "3.20"
   },
-  "name": "soem-v25.03.00",
+  "name": "soem-v25.06.00",
   "dataLicense": "CC0-1.0",
   "hasExtractedLicensingInfos": [
     {
@@ -17,12 +17,12 @@
       "name": "GNU General Public License v2.0 with Exceptions"
     }
   ],
-  "documentNamespace": "https://nxp.com/spdx/6b2da2e4-de07-475a-a673-8ca5bfedbe4f",
+  "documentNamespace": "https://nxp.com/spdx/6ab048c4-84ee-49a6-9a57-e8c02691185e",
   "packages": [
     {
-      "SPDXID": "SPDXRef-package-6b2da2e4-de07-475a-a673-8ca5bfedbe4f",
+      "SPDXID": "SPDXRef-package-6ab048c4-84ee-49a6-9a57-e8c02691185e",
       "name": "soem",
-      "versionInfo": "v25.03.00",
+      "versionInfo": "v25.06.00",
       "licenseConcluded": "(LicenseRef-d891068b-a08d-45b5-b5d9-e0fee20f3cc7)",
       "licenseDeclared": "(LicenseRef-d891068b-a08d-45b5-b5d9-e0fee20f3cc7)",
       "downloadLocation": "https://github.com/nxp-real-time-edge-sw/soem",
@@ -30,13 +30,41 @@
       "supplier": "NOASSERTION",
       "externalRefs": [],
       "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-package-8a44de41-f4ed-4883-9c83-18fdb7512a1c",
+      "name": "OpenEtherCATsociety/SOEM",
+      "versionInfo": "v1.4.0",
+      "licenseConcluded": "LicenseRef-d891068b-a08d-45b5-b5d9-e0fee20f3cc7",
+      "licenseDeclared": "eCos-2.0",
+      "downloadLocation": "NOASSERTION",
+      "originator": "Organization: openethercatsociety",
+      "supplier": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:github/OpenEtherCATsociety/SOEM@v1.4.0",
+          "referenceType": "purl"
+        },
+        {
+          "referenceCategory": "OTHER",
+          "referenceLocator": "a220511e-5f04-4c24-aa72-9a2521d41760",
+          "referenceType": "BlackDuck-ComponentOrigin"
+        }
+      ],
+      "filesAnalyzed": false
     }
   ],
   "relationships": [
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-package-6b2da2e4-de07-475a-a673-8ca5bfedbe4f"
+      "relatedSpdxElement": "SPDXRef-package-6ab048c4-84ee-49a6-9a57-e8c02691185e"
+    },
+    {
+      "spdxElementId": "SPDXRef-package-6ab048c4-84ee-49a6-9a57-e8c02691185e",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-package-8a44de41-f4ed-4883-9c83-18fdb7512a1c"
     }
   ]
 }
