@@ -28,6 +28,20 @@ menu "SOEM"
                 select MCUX_COMPONENT_middleware.freertos-kernel
         endchoice
     endif
+    config MCUX_COMPONENT_middleware.soem.netc_swt
+        bool "netc_swt"
+        
+    if MCUX_COMPONENT_middleware.soem.netc_swt
+        choice
+            prompt "netc_swt anyOf 1"
+            default MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_swt_DEPEND_ANYOF_1_OPTION_1
+            config MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_swt_DEPEND_ANYOF_1_OPTION_1
+                bool "Select MCUX_COMPONENT_middleware.baremetal"
+            config MCUX_DEPENDENCY_COMPONENT_middleware.soem.netc_swt_DEPEND_ANYOF_1_OPTION_2
+                bool "Select MCUX_COMPONENT_middleware.freertos-kernel"
+                select MCUX_COMPONENT_middleware.freertos-kernel
+        endchoice
+    endif
     config MCUX_COMPONENT_middleware.soem.bm
         bool "bm"
         
