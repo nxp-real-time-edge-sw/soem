@@ -11,6 +11,9 @@
 #ifndef _ethercatmain_
 #define _ethercatmain_
 
+#if __has_include("soem_config.h")
+#include "soem_config.h"
+#endif
 
 #ifdef __cplusplus
 extern "C"
@@ -24,7 +27,7 @@ extern "C"
 
 #ifndef EC_MAXSLAVE
 /** max. number of slaves in array */
-#define EC_MAXSLAVE       200
+#define EC_MAXSLAVE       20
 #endif
 
 /** max. number of groups */

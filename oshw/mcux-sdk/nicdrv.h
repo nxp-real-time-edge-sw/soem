@@ -4,8 +4,7 @@
  */
 
 /* 
- * For NXP ENET driver modification.
- * Copyright 2022 NXP
+ * Copyright 2022, 2024 NXP
 */
 
 /** \file
@@ -16,13 +15,12 @@
 #ifndef _nicdrvh_
 #define _nicdrvh_
 
-#include "osal.h"
-#include "ethercattype.h"
-
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+#include <pthread.h>
 
 /** pointer structure to Tx and Rx stacks */
 typedef struct

@@ -53,7 +53,7 @@ PACKED_END
  */
 int ecx_FOEdefinehook(ecx_contextt *context, void *hook)
 {
-  context->FOEhook = (int (*)(uint16, int, int))hook;
+  context->FOEhook = hook;
   return 1;
 }
 

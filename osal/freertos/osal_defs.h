@@ -3,87 +3,50 @@
  * LICENSE file in the project root for full license information
  */
 
-/*
+/* 
  * Copyright 2022 NXP
- */
-
+*/
 
 #ifndef _osal_defs_
 #define _osal_defs_
-
 #include "FreeRTOS.h"
 #include "semphr.h"
-#include "board.h"
+#if __has_include("soem_config.h")
+#include "soem_config.h"
+#endif 
+
+#ifdef EC_DEBUG
+#define EC_PRINT PRINTF
+#else
+#define EC_PRINT(...) do {} while (0)
+#endif
 
 #ifndef PACKED
 #define PACKED_BEGIN
-#define PACKED          __PACKED    /* from CMSIS */
+#define PACKED  __attribute__((__packed__))
 #define PACKED_END
 #endif
+void osal_thread_exit();
 
-
-#define osal_mutex_lock(mtx)   xSemaphoreTake(mtx, portMAX_DELAY)
-#define osal_mutex_unlock(mtx) xSemaphoreGive(mtx)
-
-#define OSAL_THREAD_HANDLE  TaskHandle_t
-#define OSAL_THREAD_FUNC    void
-#define OSAL_THREAD_FUNC_RT void
-
-
-#ifdef __NEWLIB__
-
-#include "sys/time.h"
-
-#else /* __NEWLIB__ */
-
-struct timeval
-{
-    int32_t tv_sec;
-    int32_t tv_usec;
-};
-
-#ifndef timercmp
-#define timercmp(a, b, CMP)                              \
-    (((a)->tv_sec == (b)->tv_sec) ?                      \
-     ((a)->tv_usec CMP (b)->tv_usec) :                   \
-     ((a)->tv_sec CMP (b)->tv_sec))
-#endif
-
-#ifndef timeradd
-#define timeradd(a, b, result)                           \
-    do                                                   \
-    {                                                    \
-        (result)->tv_sec  = (a)->tv_sec + (b)->tv_sec;   \
-        (result)->tv_usec = (a)->tv_usec + (b)->tv_usec; \
-        if ((result)->tv_usec >= 1000000)                \
-        {                                                \
-            ++(result)->tv_sec;                          \
-            (result)->tv_usec -= 1000000;                \
-        }                                                \
-    } while (0)
-#endif
-
-#ifndef timersub
-#define timersub(a, b, result)                           \
-    do                                                   \
-    {                                                    \
-        (result)->tv_sec  = (a)->tv_sec - (b)->tv_sec;   \
-        (result)->tv_usec = (a)->tv_usec - (b)->tv_usec; \
-        if ((result)->tv_usec < 0)                       \
-        {                                                \
-            --(result)->tv_sec;                          \
-            (result)->tv_usec += 1000000;                \
-        }                                                \
-    } while (0)
-#endif
-
-#endif /* __NEWLIB__ */
-
-
+#if (MAX_SOEM_TASK == 1)
+typedef char mtx_t;
+#define osal_mutex_create() 0
+#define osal_mutex_lock(mtx) mtx = 1
+#define osal_mutex_unlock(mtx) (mtx) = 0
+#else
 typedef SemaphoreHandle_t mtx_t;
+#if(configSUPPORT_DYNAMIC_ALLOCATION)
+#define osal_mutex_create() xSemaphoreCreateMutex()
+#else
+SemaphoreHandle_t osalSemaphoreCreateMutexStatic();
+#define osal_mutex_create() osalSemaphoreCreateMutexStatic()
+#endif
+#define osal_mutex_lock(mtx) xSemaphoreTake(mtx, portMAX_DELAY)
+#define osal_mutex_unlock(mtx) xSemaphoreGive(mtx)
+#endif
 
-mtx_t osal_mutex_create(void);
-
-int osal_thread_create(void *thandle, int stacksize, void *func, void *param);
+#define OSAL_THREAD_HANDLE TaskHandle_t
+#define OSAL_THREAD_FUNC void
+#define OSAL_THREAD_FUNC_RT void
 
 #endif

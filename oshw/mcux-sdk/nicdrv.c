@@ -4,8 +4,7 @@
  */
 
 /* 
- * For NXP ENET driver modification.
- * Copyright 2022 NXP
+ * Copyright 2022, 2024 NXP
 */
 
 /** \file
@@ -88,7 +87,7 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
    }
 
    if (!port->port_pri) {
-      EC_PRINT("The ifname or dev_name is not found\r\n");
+      printf("The ifname or dev_name is not found\r\n");
       return 0;
    }
 

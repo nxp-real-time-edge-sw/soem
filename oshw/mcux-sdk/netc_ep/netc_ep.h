@@ -3,8 +3,8 @@
  * LICENSE file in the project root for full license information
  */
 
-/* 
- * Copyright 2023-2024 NXP
+/*
+ * Copyright 2024 NXP
  */
 
 #ifndef ____NETC_EP_H___

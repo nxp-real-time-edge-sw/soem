@@ -4,12 +4,13 @@
  */
 
 /*
- * Copyright 2022-2024 NXP
- */
+ * Copyright 2022, 2024 NXP
+*/
 
-#include <string.h>
-
+#include "fsl_phy.h"
 #include "soem_port.h"
+#include <string.h>
+#include "osal_defs.h"
 
 struct soem_if_port soem_ports[SOEM_IF_PORT_MAXNUM] = {0};
 

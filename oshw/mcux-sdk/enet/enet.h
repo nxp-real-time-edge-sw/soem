@@ -4,8 +4,8 @@
  */
 
 /*
- * Copyright 2022-2024 NXP
- */
+ * Copyright 2022, 2024 NXP
+*/
 
 #ifndef ____ENET_H___
 #define ____ENET_H___

@@ -11,8 +11,6 @@
  * the slaves can be auto configured with this module.
  */
 
-#define EC_DEBUG
-
 #include <stdio.h>
 #include <string.h>
 #include "osal.h"
@@ -318,7 +316,7 @@ int ecx_config_init(ecx_contextt *context, uint8 usetable)
    int wkc, cindex, nSM;
    uint16 val16;
 
-   EC_PRINT("ec_config_init %d\n",usetable);
+   printf("-------%s %s %d \n",__FILE__, __func__, __LINE__);
    ecx_init_context(context);
    wkc = ecx_detect_slaves(context);
    if (wkc > 0)
@@ -868,7 +866,7 @@ static void ecx_config_find_mappings(ecx_contextt *context, uint8 group)
             ecx_mapt[thrn].thread_n = thrn;
             ecx_mapt[thrn].running = 1;
             osal_thread_create(&(ecx_threadh[thrn]), 128000,
-               (void *)ecx_mapper_thread, &(ecx_mapt[thrn]));
+               &ecx_mapper_thread, &(ecx_mapt[thrn]));
 #else
             /* serialised version */
             ecx_map_coe_soe(context, slave, 0);
