@@ -2,13 +2,13 @@
   "SPDXID": "SPDXRef-DOCUMENT",
   "spdxVersion": "SPDX-2.3",
   "creationInfo": {
-    "created": "2025-08-04T04:47:54Z",
+    "created": "2025-09-01T12:55:38Z",
     "creators": [
       "Organization: NXP"
     ],
     "licenseListVersion": "3.20"
   },
-  "name": "soem-v25.09.00-pvw2",
+  "name": "soem-v25.09.00",
   "dataLicense": "CC0-1.0",
   "hasExtractedLicensingInfos": [
     {
@@ -17,12 +17,12 @@
       "name": "GNU General Public License v2.0 with Exceptions"
     }
   ],
-  "documentNamespace": "https://nxp.com/spdx/b3d3632b-8593-4e57-b700-903b39341036",
+  "documentNamespace": "https://nxp.com/spdx/65b63730-92a4-4e55-a6ed-cc1daa4d3042",
   "packages": [
     {
-      "SPDXID": "SPDXRef-package-b3d3632b-8593-4e57-b700-903b39341036",
+      "SPDXID": "SPDXRef-package-65b63730-92a4-4e55-a6ed-cc1daa4d3042",
       "name": "soem",
-      "versionInfo": "v25.09.00-pvw2",
+      "versionInfo": "v25.09.00",
       "licenseConcluded": "(LicenseRef-d891068b-a08d-45b5-b5d9-e0fee20f3cc7)",
       "licenseDeclared": "(LicenseRef-d891068b-a08d-45b5-b5d9-e0fee20f3cc7)",
       "downloadLocation": "https://github.com/nxp-real-time-edge-sw/soem",
@@ -59,10 +59,10 @@
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-package-b3d3632b-8593-4e57-b700-903b39341036"
+      "relatedSpdxElement": "SPDXRef-package-65b63730-92a4-4e55-a6ed-cc1daa4d3042"
     },
     {
-      "spdxElementId": "SPDXRef-package-b3d3632b-8593-4e57-b700-903b39341036",
+      "spdxElementId": "SPDXRef-package-65b63730-92a4-4e55-a6ed-cc1daa4d3042",
       "relationshipType": "OTHER",
       "relatedSpdxElement": "SPDXRef-package-8a44de41-f4ed-4883-9c83-18fdb7512a1c",
       "comment": "Separate Work"
