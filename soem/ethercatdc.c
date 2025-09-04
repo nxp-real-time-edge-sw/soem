@@ -272,9 +272,16 @@ boolean ecx_configdc(ecx_contextt *context)
    ht = 0;
 
    ecx_BWR(context->port, 0, ECT_REG_DCTIME0, sizeof(ht), &ht, EC_TIMEOUTRET);  /* latch DCrecvTimeA of all slaves */
+
+#ifdef MASTER_SLAVE_SYNC
+   /* sync master and slave */
+   mastertime64 = system_time64_ns();
+#else
    mastertime = osal_current_time();
    mastertime.sec -= 946684800UL;  /* EtherCAT uses 2000-01-01 as epoch start instead of 1970-01-01 */
    mastertime64 = (((uint64)mastertime.sec * 1000000) + (uint64)mastertime.usec) * 1000;
+#endif
+
    for (i = 1; i <= *(context->slavecount); i++)
    {
       context->slavelist[i].consumedports = context->slavelist[i].activeports;
