@@ -15,6 +15,10 @@
 #include "ethercatmain.h"
 #include "ethercatdc.h"
 
+#if __has_include("app.h")
+#include "app.h"
+#endif 
+
 #define PORTM0 0x01
 #define PORTM1 0x02
 #define PORTM2 0x04
