@@ -26,6 +26,6 @@ struct netc_swt_if_port
 	swt_transfer_config_t *swtTxRxConfig;
 	netc_bdr_config_t *bdrConfig;
 	uint8_t *g_txFrame; 
-	bool txOver;
+	volatile bool txOver;
 };
 #endif
