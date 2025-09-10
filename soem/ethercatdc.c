@@ -264,7 +264,6 @@ boolean ecx_configdc(ecx_contextt *context)
    int8 nlist;
    int8 plist[4];
    int32 tlist[4];
-   ec_timet mastertime;
    uint64 mastertime64;
 
    context->slavelist[0].hasdc = FALSE;
@@ -277,6 +276,7 @@ boolean ecx_configdc(ecx_contextt *context)
    /* sync master and slave */
    mastertime64 = system_time64_ns();
 #else
+   ec_timet mastertime;
    mastertime = osal_current_time();
    mastertime.sec -= 946684800UL;  /* EtherCAT uses 2000-01-01 as epoch start instead of 1970-01-01 */
    mastertime64 = (((uint64)mastertime.sec * 1000000) + (uint64)mastertime.usec) * 1000;

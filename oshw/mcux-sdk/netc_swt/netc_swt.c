@@ -21,7 +21,6 @@ int netc_swt_init(void *pri, uint8_t *macAddr)
 	status_t result = kStatus_Success;
     struct netc_swt_if_port *port = pri;
     volatile uint32_t count = 30;
-    uint32_t entryID;
     bool link               = false;
 
     result = EP_Init(&port->g_ep_handle, &macAddr[0], port->ep_config, port->bdrConfig);
