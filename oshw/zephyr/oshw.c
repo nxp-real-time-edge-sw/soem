@@ -6,6 +6,8 @@
  */
 
 #include <stdlib.h>
+#include <zephyr/net/net_ip.h>
+
 #include "oshw.h"
 
 /**
