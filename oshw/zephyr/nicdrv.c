@@ -44,6 +44,7 @@
 #include <arpa/inet.h>
 #include <zephyr/net/net_if.h>
 #include <zephyr/net/net_ip.h>
+#include "log/log.h"
 
 #include "oshw.h"
 #include "osal.h"
@@ -134,7 +135,7 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
 
    *psock = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ECAT));
    if (*psock == -1) {
-      printf("%s: socket() failed!\n", __func__);
+      os_printf("%s: socket() failed!\n", __func__);
       return 0;
    }
 
@@ -142,11 +143,11 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
    timeout.tv_usec = 1;
    ret = setsockopt(*psock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
    if (ret) {
-      printf("%s: setsockopt() SO_RCVTIMEO failed\n", __func__);
+      os_printf("%s: setsockopt() SO_RCVTIMEO failed\n", __func__);
    }
    ret = setsockopt(*psock, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
    if (ret) {
-      printf("%s: setsockopt() SO_SNDTIMEO failed\n", __func__);
+      os_printf("%s: setsockopt() SO_SNDTIMEO failed\n", __func__);
    }
 
    /* bind socket to protocol, in this case RAW EtherCAT */
@@ -155,7 +156,7 @@ int ecx_setupnic(ecx_portt *port, const char *ifname, int secondary)
    sll.sll_protocol = htons(ETH_P_ECAT);
    ret = bind(*psock, (struct sockaddr *)&sll, sizeof(sll));
    if (ret) {
-      printf("%s: socket bind() failed\n", __func__);
+      os_printf("%s: socket bind() failed\n", __func__);
       return 0;
    }
 
