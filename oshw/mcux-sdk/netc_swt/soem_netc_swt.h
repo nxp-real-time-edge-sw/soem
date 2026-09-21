@@ -17,10 +17,10 @@
 
 struct netc_swt_if_port
 {
-	swt_handle_t g_swt_handle;
-	ep_handle_t g_ep_handle;
-	netc_mdio_handle_t s_emdio_handle;
-    phy_handle_t phy_handle;
+	swt_handle_t *g_swt_handle;
+	ep_handle_t *g_ep_handle;
+	netc_mdio_handle_t *s_emdio_handle;
+	phy_handle_t *phy_handle;
 	ep_config_t *ep_config;
 	swt_config_t *swt_config;
 	swt_transfer_config_t *swtTxRxConfig;
