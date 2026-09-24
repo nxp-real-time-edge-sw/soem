@@ -1,0 +1,7 @@
+
+# WinPcap/Npcap import libraries are NOT committed (see MCUX-91633 / MCUX-89729).
+# Install the WinPcap or Npcap SDK and point the win32 test projects at its Lib dir.
+oshw/win32/wpcap/Lib/
+
+# Local Linux build outputs
+linux_build/build-*/
